@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>My Website</h1>
+    </header>
+    <main>
+       <section id="login">
+            <h2>Login</h2>
+            <form>
+                <label for="username">Username/Email:</label>
+                <input type="text" id="username" name="username" required>
+                <br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <br>
+                <button onclick="authenticate()">Login</button>
+                <p>Not registered yet? <a href="#" id="showRegistration">Sign Up</a></p>
+            </form>
+        </section>
+        <section id="registration" style="display: none;">
+            <h2>Registration</h2>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <br>
+                <label for="reg_password">Password:</label>
+                <input type="password" id="reg_password" name="reg_password" required>
+                <br>
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+                <br>
+                <button onclick="registerUser()">Register</button>
+                <p>Already registered? <a href="#" id="showLogin">Login</a></p>
+            </form>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+    <script>
+	
+		const users = [
+			{username: 'kurt', password: '1234'},
+			{username: 'bianca', password: '1234'},
+			{username: 'anjelo', password: '1234'}
+		]
+		
+		function authenticate() {
+			const username = document.getElementById('username').value
+			const password = document.getElementById('password').value
+			event.preventDefault();
+			
+			const found = users.find(user => user.username === username && user.password === password);
+			
+			if (found) {
+				window.location.href = "homepage.html"
+			}
+			else {
+				alert("Invalid username or password");
+			}
+			
+
+		
+		}
+		
+		
+		document.addEventListener('DOMContentLoaded', () => {
+			const loginSection = document.getElementById('login');
+			const registrationSection = document.getElementById('registration');
+			const showRegistrationLink = document.getElementById('showRegistration');
+			const showLoginLink = document.getElementById('showLogin');
+
+	
+			showRegistrationLink.addEventListener('click', (event) => {
+				event.preventDefault();
+				loginSection.style.display = 'none';
+				registrationSection.style.display = 'block';
+			});
+
+			showLoginLink.addEventListener('click', (event) => {
+				event.preventDefault();
+				loginSection.style.display = 'block';
+				registrationSection.style.display = 'none';
+			});
+		});
+		
+	
+		
+</script>
+</body>
+</html>
